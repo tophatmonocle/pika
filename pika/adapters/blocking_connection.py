@@ -14,7 +14,7 @@ from pika.adapters import BaseConnection
 from pika.channel import Channel, ChannelTransport
 from pika.exceptions import AMQPConnectionError, AMQPChannelError
 
-SOCKET_TIMEOUT = 1
+SOCKET_TIMEOUT = 0.25
 SOCKET_TIMEOUT_THRESHOLD = 100
 SOCKET_TIMEOUT_MESSAGE = "BlockingConnection: Timeout exceeded, disconnected"
 
