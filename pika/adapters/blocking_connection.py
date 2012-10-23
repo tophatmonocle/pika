@@ -33,9 +33,13 @@ class BlockingConnection(BaseConnection):
 
     def _adapter_connect(self, host, port):
 
-        BaseConnection._adapter_connect(self, host, port)
-        self.socket.setblocking(1)
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        self.socket.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 1)
         self.socket.settimeout(SOCKET_TIMEOUT)
+
+        self.socket.connect((host, port))
+        
+        self.socket.setblocking(1)
         self._socket_timeouts = 0
         self._on_connected()
         self._timeouts = dict()
