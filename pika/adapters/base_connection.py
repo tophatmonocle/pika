@@ -116,6 +116,7 @@ class BaseConnection(connection.Connection):
 
     def _adapter_disconnect(self):
         """Invoked if the connection is being told to disconnect"""
+        LOGGING.warning('GETTING CALLED ON BASE CLASS')
         if self.socket:
             self.socket.close()
         self.socket = None
